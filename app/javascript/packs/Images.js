@@ -17,7 +17,7 @@ class Images extends React.Component {
     request.open('GET', url, true);
     request.onload = () => {
       // Begin accessing JSON data here
-      let data = null
+      let data = null;
       try {
         data = JSON.parse(request.response);
       } catch (error) {
@@ -33,7 +33,6 @@ class Images extends React.Component {
         });
 
         this.setState({ images });
-
       } else {
         console.log('error in fetching images');
       }

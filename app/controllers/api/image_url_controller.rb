@@ -21,7 +21,7 @@ class Api::ImageUrlController < Api::BaseController
   private
 
   def imageUrl_params
-    params.require(:imageUrl).permit(:id, :url)
+    params.require(:imageUrl).permit(:url)
   end
 
 end
