@@ -1,18 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import ImageForm from "./ImageForm";
-
-class App extends React.Component {
-  render() {
-    return (
-      <ImageForm />
-    );
-  }
-}
+import HomePage from './HomePage';
 
 render(
-  <App />,
+  <HomePage />,
   document.getElementById('App')
 );
-
-export default App;
