@@ -41,7 +41,7 @@ class Images extends React.Component {
   }
 
   renderImages() {
-    return this.state.images.map((item, index) => (<div key={index}> <img alt='img' key={index} src={item} /> </div>));
+    return this.state.images.map((item, index) => (<div key={index}> <img className='images' alt='img' key={index} src={item} /> </div>));
   }
 
   render() {
