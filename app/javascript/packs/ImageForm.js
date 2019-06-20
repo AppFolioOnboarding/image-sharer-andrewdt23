@@ -5,16 +5,13 @@ class ImageForm extends React.Component {
     super(props);
     this.state = { imageURL: '',
       showImage: false };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ imageURL: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     document.getElementById('url-input').value = '';
     this.setState({ showImage: true });
     event.preventDefault();
