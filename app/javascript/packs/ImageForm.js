@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 class ImageForm extends React.Component {
   constructor(props) {
@@ -52,19 +52,20 @@ class ImageForm extends React.Component {
 
   renderModal = () => (
     <div>
-      <Button color="primary" onClick={this.showModal} >Add New Image URL</Button>
+      <div className='url-button'>
+        <Button color="primary" className='test' onClick={this.showModal} >Add New Image URL</Button>
+      </div>
       <Modal isOpen={this.state.showModal} >
         <form onSubmit={this.handleSubmit}>
           <ModalHeader>Add/Edit an Image URL</ModalHeader>
           <ModalBody>
-            Current Image:
               <label>
                 Image URL:
-                <input id='url-input' type="text" onChange={this.handleChange} />
+                <input className='url-input' id='url-input' type="text" onChange={this.handleChange} />
               </label>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" type="submit" value="Submit" onClick={this.hideModal}>Save</Button>{' '}
+            <Button color="primary" type="submit" value="Submit" onClick={this.hideModal}>Save</Button>
             <Button color="secondary" onClick={this.hideModal}>Cancel</Button>
           </ModalFooter>
         </form>
