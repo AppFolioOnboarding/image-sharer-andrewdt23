@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageForm from './ImageForm';
+import Images from './Images';
 
 class HomePage extends React.Component {
 
@@ -7,6 +8,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <ImageForm />
+        <Images />
       </div>
     );
   }
