@@ -1,5 +1,11 @@
 .image-cards {
   width: 400px;
+  @media(max-width: 550px) {
+    width: 300px;
+  }
+  @media(max-width: 400px) {
+    width: 200px;
+  }
   margin: 0 auto 30px auto;
 }
 

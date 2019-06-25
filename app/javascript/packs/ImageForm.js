@@ -34,7 +34,7 @@ class ImageForm extends React.Component {
       const request = new XMLHttpRequest();
       let payload = { imageUrl: { url: this.state.imageURL } };
       payload = JSON.stringify(payload);
-      const url = 'http://localhost:3000/api/image_url';
+      const url = '/api/image_url';
       request.open('POST', url, true);
       request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
       request.send(payload);

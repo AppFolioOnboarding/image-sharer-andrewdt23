@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardBody,
-  CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardTitle } from 'reactstrap';
 
 class Images extends React.Component {
   constructor() {
@@ -15,7 +14,7 @@ class Images extends React.Component {
   componentDidMount() {
     const request = new XMLHttpRequest();
 
-    const url = 'http://localhost:3000/api/image_url.json';
+    const url = '/api/image_url.json';
     request.open('GET', url, true);
     request.onload = () => {
       // Begin accessing JSON data here
@@ -43,12 +42,12 @@ class Images extends React.Component {
   }
 
   renderImages() {
-    return this.state.images.map((item, index) => (
+    return this.state.images.map((imageUrl, index) => (
       <div className='image-cards' key={index}>
         <Card style={{ backgroundColor: '#343A40'}}>
-          <CardImg src={item} alt="Card image cap" />
+          <CardImg src={imageUrl} alt="Card image cap" />
           <CardBody>
-            <CardTitle className='url'><a className='link' href={item} target="_blank" rel="noopener noreferrer">{item}</a></CardTitle>
+            <CardTitle className='url'><a className='link' href={imageUrl} target="_blank" rel="noopener noreferrer">{imageUrl}</a></CardTitle>
           </CardBody>
         </Card>
       </div>

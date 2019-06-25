@@ -9,7 +9,7 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar className='header' dark expand="md">
-          <NavbarBrand className='brand' href="/">Manage URL</NavbarBrand>
+          <NavbarBrand style={{ fontSize: '30px' }} href="/">Manage URL</NavbarBrand>
         </Navbar>
       </div>
     );
