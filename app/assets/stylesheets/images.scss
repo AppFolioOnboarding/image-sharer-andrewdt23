@@ -1,3 +1,16 @@
-.images {
+.image-cards {
   width: 400px;
+  margin: 0 0 30px 30px;
+}
+
+.url {
+  font-size: 20px;
+}
+
+.link {
+  color: white;
+
+  &:hover {
+    color: #007bff;
+  }
 }

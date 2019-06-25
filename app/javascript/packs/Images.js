@@ -1,4 +1,6 @@
 import React from 'react';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 class Images extends React.Component {
   constructor() {
@@ -41,7 +43,16 @@ class Images extends React.Component {
   }
 
   renderImages() {
-    return this.state.images.map((item, index) => (<div key={index}> <img className='images' alt='img' key={index} src={item} /> </div>));
+    return this.state.images.map((item, index) => (
+      <div className='image-cards' key={index}>
+        <Card style={{ backgroundColor: '#343A40'}}>
+          <CardImg src={item} alt="Card image cap" />
+          <CardBody>
+            <CardTitle className='url'><a className='link' href={item} target="_blank" rel="noopener noreferrer">{item}</a></CardTitle>
+          </CardBody>
+        </Card>
+      </div>
+    ));
   }
 
   render() {
