@@ -1,10 +1,13 @@
 import React from 'react';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 class ImageForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { imageURL: '',
-      showImage: false };
+      showImage: false,
+      showModal: false
+    };
   }
 
   handleChange = (event) => {
@@ -39,16 +42,41 @@ class ImageForm extends React.Component {
     }
   }
 
+  showModal = () => {
+    this.setState({ showModal: true });
+  }
+
+  hideModal = () => {
+    this.setState({ showModal: false });
+  }
+
+  renderModal = () => (
+    <div>
+      <div className='url-button'>
+        <Button color="primary" className='test' onClick={this.showModal} >Add New Image URL</Button>
+      </div>
+      <Modal isOpen={this.state.showModal} >
+        <form onSubmit={this.handleSubmit}>
+          <ModalHeader>Add/Edit an Image URL</ModalHeader>
+          <ModalBody>
+              <label>
+                Image URL:
+                <input className='url-input' id='url-input' type="text" onChange={this.handleChange} />
+              </label>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" type="submit" value="Submit" onClick={this.hideModal}>Save</Button>
+            <Button color="secondary" onClick={this.hideModal}>Cancel</Button>
+          </ModalFooter>
+        </form>
+      </Modal>
+    </div>
+  )
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Image URL:
-            <input id='url-input' type="text" onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        {this.renderModal()}
         {this.state.showImage ? <img src={this.state.imageURL} alt='img' /> : null}
       </div>
     );
