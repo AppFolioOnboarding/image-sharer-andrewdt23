@@ -10,8 +10,11 @@ class HomePage extends React.Component {
     return (
       <div>
         <Header />
-        <ImageForm />
-        <Images />
+        <div className='body-container'>
+          <h1 className='title'>Rails/React ImageShare</h1>
+          <ImageForm />
+          <Images />
+        </div>
         <Footer />
       </div>
     );

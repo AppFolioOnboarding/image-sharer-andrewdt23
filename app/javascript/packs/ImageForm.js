@@ -52,8 +52,8 @@ class ImageForm extends React.Component {
 
   renderModal = () => (
     <div>
-      <div className='url-button'>
-        <Button color="primary" className='test' onClick={this.showModal} >Add New Image URL</Button>
+      <div className='url-button-container'>
+        <Button className='url-button' color="primary" onClick={this.showModal} >Add New Image URL</Button>
       </div>
       <Modal isOpen={this.state.showModal} >
         <form onSubmit={this.handleSubmit}>

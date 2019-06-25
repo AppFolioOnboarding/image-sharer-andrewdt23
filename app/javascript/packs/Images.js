@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardImg, CardBody,
+  CardTitle } from 'reactstrap';
 
 class Images extends React.Component {
   constructor() {
