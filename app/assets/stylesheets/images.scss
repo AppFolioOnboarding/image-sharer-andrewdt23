@@ -20,3 +20,18 @@
     color: #007bff;
   }
 }
+
+.tag {
+  font-size: 24px;
+  font-weight: 300;
+  padding: 0 15px 0 15px;
+  margin: 0 10px 0 10px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+
+  @media(max-width: 400px) {
+    display: grid;
+    margin-bottom: 15px;
+  }
+}

@@ -7,8 +7,6 @@ class Images extends React.Component {
     this.state = {
       images: null
     };
-
-    this.renderImages = this.renderImages.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +26,11 @@ class Images extends React.Component {
       if (request.status === 200) {
         const images = [];
         data.forEach((entry) => {
-          if (entry.url) {
-            images.push(entry.url);
+          if (entry.url && entry.tag_list) {
+            images.push({
+              url: entry.url,
+              tagList: entry.tag_list
+            });
           }
         });
 
@@ -41,23 +42,30 @@ class Images extends React.Component {
     request.send();
   }
 
-  renderImages() {
-    return this.state.images.map((imageUrl, index) => (
+  renderTags = (tags) => {
+    return tags.map((tag, index) => (
+      <span className='tag' key={index}>{tag}</span>
+    ));
+  };
+
+  renderCards = () => {
+    return this.state.images.map((image, index) => (
       <div className='image-cards' key={index}>
         <Card style={{ backgroundColor: '#343A40'}}>
-          <CardImg src={imageUrl} alt="Card image cap" />
+          <CardImg src={image.url} alt="Card image cap" />
           <CardBody>
-            <CardTitle className='url'><a className='link' href={imageUrl} target="_blank" rel="noopener noreferrer">{imageUrl}</a></CardTitle>
+            <CardTitle className='url'><a className='link' href={image.url} target="_blank" rel="noopener noreferrer">{image.url}</a></CardTitle>
+            {this.renderTags(image.tagList)}
           </CardBody>
         </Card>
       </div>
     ));
-  }
+  };
 
   render() {
     return (
       <div>
-        {this.state.images ? this.renderImages() : null}
+        {this.state.images ? this.renderCards() : null}
       </div>
     );
   }

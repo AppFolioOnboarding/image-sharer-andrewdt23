@@ -12,3 +12,22 @@
   color: red;
   margin-left: 20px;
 }
+
+.tags {
+  margin: 20px 0 0 103px;
+}
+
+.tag-wrapper {
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.ReactTags__tagInput {
+  margin-top: 15px;
+  @media(max-width: 330px) {
+    box-shadow: 1px 1px 2px #2E2F30;
+  }
+}
