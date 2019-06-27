@@ -2,13 +2,11 @@ import React from 'react';
 import { Card, CardBody, CardImg, CardTitle } from 'reactstrap';
 
 class Images extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       images: null
     };
-
-    this.renderImages = this.renderImages.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +24,8 @@ class Images extends React.Component {
       }
 
       if (request.status === 200) {
-        const images = [];
-        data.forEach((entry) => {
-          if (entry.url) {
-            images.push(entry.url);
-          }
+        const images = data.map((entry) => {
+          return { url: entry.url, tagList: entry.tag_list };
         });
 
         this.setState({ images });
@@ -41,23 +36,26 @@ class Images extends React.Component {
     request.send();
   }
 
-  renderImages() {
-    return this.state.images.map((imageUrl, index) => (
-      <div className='image-cards' key={index}>
-        <Card style={{ backgroundColor: '#343A40'}}>
-          <CardImg src={imageUrl} alt="Card image cap" />
-          <CardBody>
-            <CardTitle className='url'><a className='link' href={imageUrl} target="_blank" rel="noopener noreferrer">{imageUrl}</a></CardTitle>
-          </CardBody>
-        </Card>
-      </div>
-    ));
-  }
+  renderTags = tags => tags.map((tag, index) => (
+    <span className='tag' key={index}>{tag}</span>
+  ));
+
+  renderCards = () => this.state.images.map((image, index) => (
+    <div className='image-cards' key={index}>
+      <Card style={{ backgroundColor: '#343A40' }}>
+        <CardImg src={image.url} alt="Card image cap" />
+        <CardBody>
+          <CardTitle className='url'><a className='link' href={image.url} target="_blank" rel="noopener noreferrer">{image.url}</a></CardTitle>
+          {this.renderTags(image.tagList)}
+        </CardBody>
+      </Card>
+    </div>
+  ));
 
   render() {
     return (
       <div>
-        {this.state.images ? this.renderImages() : null}
+        {this.state.images ? this.renderCards() : null}
       </div>
     );
   }

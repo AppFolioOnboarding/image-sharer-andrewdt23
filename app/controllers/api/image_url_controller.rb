@@ -39,7 +39,7 @@ module Api
     private
 
     def imageUrl_params
-      params.require(:imageUrl).permit(:url)
+      params.require(:imageUrl).permit(:url, :tag_list)
     end
 
   end
