@@ -6,12 +6,13 @@ class ImageForm extends React.Component {
     super(props);
     this.state = { imageURL: '',
       showImage: false,
-      showModal: false
+      showModal: false,
+      showError: false
     };
   }
 
   handleChange = (event) => {
-    this.setState({ imageURL: event.target.value });
+    this.setState({ imageURL: event.target.value, showError: false });
   }
 
   validURL = (url) => {
@@ -24,7 +25,7 @@ class ImageForm extends React.Component {
     return !!pattern.test(url);
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
     document.getElementById('url-input').value = '';
 
     if (this.validURL(this.state.imageURL) && this.state.imageURL.match(/\.(jpeg|jpg|gif|png)/) != null) {
@@ -33,12 +34,14 @@ class ImageForm extends React.Component {
       const request = new XMLHttpRequest();
       let payload = { imageUrl: { url: this.state.imageURL } };
       payload = JSON.stringify(payload);
-      const url = 'http://localhost:3000/api/image_url';
+      const url = '/api/image_url';
       request.open('POST', url, true);
       request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
       request.send(payload);
+      this.setState({ showModal: false });
     } else {
-      alert('Invalid URL Submission.');
+      event.preventDefault();
+      this.setState({ showError: true, showModal: true });
     }
   }
 
@@ -52,8 +55,8 @@ class ImageForm extends React.Component {
 
   renderModal = () => (
     <div>
-      <div className='url-button'>
-        <Button color="primary" className='test' onClick={this.showModal} >Add New Image URL</Button>
+      <div className='url-button-container'>
+        <Button className='url-button' color="primary" onClick={this.showModal} >Add New Image URL</Button>
       </div>
       <Modal isOpen={this.state.showModal} >
         <form onSubmit={this.handleSubmit}>
@@ -62,10 +65,11 @@ class ImageForm extends React.Component {
               <label>
                 Image URL:
                 <input className='url-input' id='url-input' type="text" onChange={this.handleChange} />
+                {this.state.showError ? <span className='error'>Invalid URL Submission</span> : null}
               </label>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" type="submit" value="Submit" onClick={this.hideModal}>Save</Button>
+            <Button color="primary" type="submit" value="Submit">Save</Button>
             <Button color="secondary" onClick={this.hideModal}>Cancel</Button>
           </ModalFooter>
         </form>

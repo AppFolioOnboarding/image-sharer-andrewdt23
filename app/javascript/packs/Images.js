@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, CardBody, CardImg, CardTitle } from 'reactstrap';
 
 class Images extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class Images extends React.Component {
   componentDidMount() {
     const request = new XMLHttpRequest();
 
-    const url = 'http://localhost:3000/api/image_url.json';
+    const url = '/api/image_url.json';
     request.open('GET', url, true);
     request.onload = () => {
       // Begin accessing JSON data here
@@ -41,7 +42,16 @@ class Images extends React.Component {
   }
 
   renderImages() {
-    return this.state.images.map((item, index) => (<div key={index}> <img className='images' alt='img' key={index} src={item} /> </div>));
+    return this.state.images.map((imageUrl, index) => (
+      <div className='image-cards' key={index}>
+        <Card style={{ backgroundColor: '#343A40'}}>
+          <CardImg src={imageUrl} alt="Card image cap" />
+          <CardBody>
+            <CardTitle className='url'><a className='link' href={imageUrl} target="_blank" rel="noopener noreferrer">{imageUrl}</a></CardTitle>
+          </CardBody>
+        </Card>
+      </div>
+    ));
   }
 
   render() {
